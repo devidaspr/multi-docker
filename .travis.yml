@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t devidasprt/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t devidasp/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true devidasprt/react-test npm test -- --coverage
+  - docker run -e CI=true devidasp/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t devidasprt/multi-client ./client
-  - docker build -t devidasprt/multi-nginx ./nginx
-  - docker build -t devidasprt/multi-server ./server
-  - docker build -t devidasprt/multi-worker ./worker
+  - docker build -t devidasp/multi-client ./client
+  - docker build -t devidasp/multi-nginx ./nginx
+  - docker build -t devidasp/multi-server ./server
+  - docker build -t devidasp/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take these images and push them to dockerhub
-  - docker push devidasprt/multi-client
-  - docker push devidasprt/multi-nginx
-  - docker push devidasprt/multi-server
-  - docker push devidasprt/multi-worker
+  - docker push devidasp/multi-client
+  - docker push devidasp/multi-nginx
+  - docker push devidasp/multi-server
+  - docker push devidasp/multi-worker
